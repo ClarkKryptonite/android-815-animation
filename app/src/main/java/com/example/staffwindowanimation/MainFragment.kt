@@ -83,7 +83,7 @@ class MainFragment : Fragment() {
             cardView.y = topMarginValue.toFloat()
         } ?: cardView.apply {
             layoutParams =
-                ConstraintLayout.LayoutParams((screenWidth * 0.8f).roundToInt(), 600).apply {
+                ConstraintLayout.LayoutParams((screenWidth * 0.80f).roundToInt(), 600).apply {
                     topToTop = ConstraintSet.PARENT_ID
                     startToStart = ConstraintSet.PARENT_ID
                     endToEnd = ConstraintSet.PARENT_ID
@@ -107,25 +107,116 @@ class MainFragment : Fragment() {
             }
 
         //scale and transition
-        val scaleXHolder2 = PropertyValuesHolder.ofFloat("scaleX", 0f)
-        val scaleYHolder2 = PropertyValuesHolder.ofFloat("scaleY", 0f)
+        // val scaleXHolder2 = PropertyValuesHolder.ofFloat("scaleX", 0f)
+        val scaleXKeyframeHolder = PropertyValuesHolder.ofKeyframe(
+            "scaleX",
+            Keyframe.ofFloat(0f, 1f),
+            Keyframe.ofFloat(0.05f, 1.07f),
+            Keyframe.ofFloat(0.10f, 0.91f),
+            Keyframe.ofFloat(0.15f, 0.562f),
+            Keyframe.ofFloat(0.20f, 0.421f),
+            Keyframe.ofFloat(0.25f, 0.304f),
+            Keyframe.ofFloat(0.30f, 0.212f),
+            Keyframe.ofFloat(0.35f, 0.143f),
+            Keyframe.ofFloat(0.40f, 0.094f),
+            Keyframe.ofFloat(0.45f, 0.059f),
+            Keyframe.ofFloat(0.50f, 0.036f),
+            Keyframe.ofFloat(0.55f, 0.022f),
+            Keyframe.ofFloat(0.60f, 0.013f),
+            Keyframe.ofFloat(0.65f, 0.008f),
+            Keyframe.ofFloat(0.70f, 0.005f),
+            Keyframe.ofFloat(0.75f, 0.004f),
+            Keyframe.ofFloat(0.80f, 0.003f),
+            Keyframe.ofFloat(0.85f, 0.003f),
+            Keyframe.ofFloat(0.90f, 0.002f),
+            Keyframe.ofFloat(0.95f, 0.000f),
+            Keyframe.ofFloat(1f, 0.000f),
+        )
+        // val scaleYHolder2 = PropertyValuesHolder.ofFloat("scaleY", 0f)
+        val scaleYKeyframeHolder = PropertyValuesHolder.ofKeyframe(
+            "scaleY",
+            Keyframe.ofFloat(0f, 1f),
+            Keyframe.ofFloat(0.05f, 1.07f),
+            Keyframe.ofFloat(0.10f, 0.91f),
+            Keyframe.ofFloat(0.15f, 0.562f),
+            Keyframe.ofFloat(0.20f, 0.421f),
+            Keyframe.ofFloat(0.25f, 0.304f),
+            Keyframe.ofFloat(0.30f, 0.212f),
+            Keyframe.ofFloat(0.35f, 0.143f),
+            Keyframe.ofFloat(0.40f, 0.094f),
+            Keyframe.ofFloat(0.45f, 0.059f),
+            Keyframe.ofFloat(0.50f, 0.036f),
+            Keyframe.ofFloat(0.55f, 0.022f),
+            Keyframe.ofFloat(0.60f, 0.013f),
+            Keyframe.ofFloat(0.65f, 0.008f),
+            Keyframe.ofFloat(0.70f, 0.005f),
+            Keyframe.ofFloat(0.75f, 0.004f),
+            Keyframe.ofFloat(0.80f, 0.003f),
+            Keyframe.ofFloat(0.85f, 0.003f),
+            Keyframe.ofFloat(0.90f, 0.002f),
+            Keyframe.ofFloat(0.95f, 0.000f),
+            Keyframe.ofFloat(1f, 0.000f),
+        )
+
+        val transYValue = endPoint.y - cardView.height / 2 - cardView.y
         val transXValue = endPoint.x - cardView.width / 2 - cardView.x
         val transY =
             PropertyValuesHolder.ofFloat(
                 "translationY",
                 endPoint.y - cardView.height / 2 - cardView.y
             )
+        val transYKeyframeHolder = PropertyValuesHolder.ofKeyframe(
+            "translationY",
+            Keyframe.ofFloat(0f, 0f),
+            Keyframe.ofFloat(0.05f, (-0.06 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.10f, (-0.058 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.15f, (-0.041 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.20f, (0.121 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.25f, (0.299 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.30f, (0.461 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.35f, (0.599 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.40f, (0.708 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.45f, (0.792 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.50f, (0.854 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.55f, (0.899 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.60f, (0.931 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.65f, (0.953 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.70f, (0.968 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.75f, (0.978 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.80f, (0.986 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.85f, (0.992 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.90f, (0.996 * transYValue).toFloat()),
+            Keyframe.ofFloat(0.95f, transYValue),
+            Keyframe.ofFloat(1f, transYValue)
+        )
         val transXKeyframeHolder = PropertyValuesHolder.ofKeyframe(
             "translationX",
             Keyframe.ofFloat(0f, 0f),
-            Keyframe.ofFloat(0.2f, transXValue * 4 / 5),
-            Keyframe.ofFloat(0.8f, transXValue * 9 / 10),
+            Keyframe.ofFloat(0.05f, 0f),
+            Keyframe.ofFloat(0.10f, 0f),
+            Keyframe.ofFloat(0.15f, (0.283 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.20f, (0.499 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.25f, (0.659 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.30f, (0.775 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.35f, (0.858 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.40f, (0.913 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.45f, (0.949 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.50f, (0.971 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.55f, (0.984 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.60f, (0.991 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.65f, (0.995 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.70f, (0.997 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.75f, (0.998 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.80f, (0.999 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.85f, (0.999 * transXValue).toFloat()),
+            Keyframe.ofFloat(0.90f, transXValue),
+            Keyframe.ofFloat(0.95f, transXValue),
             Keyframe.ofFloat(1f, transXValue)
         )
         val scaleMoveAnimator = ObjectAnimator.ofPropertyValuesHolder(
             cardView,
-            scaleXHolder2, scaleYHolder2,
-            transXKeyframeHolder, transY
+            scaleXKeyframeHolder, scaleYKeyframeHolder,
+            transXKeyframeHolder, transYKeyframeHolder
         ).apply {
             duration = 700
         }
